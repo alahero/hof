@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HOF Nightclub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e50615",
+                        "background-light": "#f8f5f6",
+                        "background-dark": "#0a0a0a",
+                        "surface": "#1a1a1a",
+                        "accent": "#ffa800"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col justify-between">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Top App Bar -->
+<div class="flex items-center p-4 pb-2 justify-between z-10 relative">
+<button class="flex size-12 shrink-0 items-center justify-center text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<h2 class="text-xl font-black leading-tight tracking-widest flex-1 text-center pr-12 text-primary">HOF</h2>
+</div>
+<!-- Hero Section -->
+<div class="@container z-0 -mt-16">
+<div class="flex min-h-[500px] flex-col gap-6 bg-cover bg-center bg-no-repeat items-center justify-end p-6 pb-12" data-alt="Crowd at a lively nightclub with red lighting" style='background-image: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 50%, rgba(10,10,10,0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDi-7xesXPixTkQ54z3TpR5Y57RZQZuB4INrDo6d4i5niI3Cn8mgUt9IdL_e-_D6vXmKLKTseqCDmRx08F7nQwEZQXGapaJqAo1zMA7Zj7l3960VpBnQIlIFFJOoQfqtdBBVhyAj8_fCq5IXCSAEsMikyjUeZOasmUB7GUVe_EftnsjjS-UMkfJYESNufDiMqd-LfzosyUhLQY3fqWRH0m5wHTAxH8xHmjI47U-p_iGHFD6PCjntrG4zI9A5SkSQaNFg701JyKCmX3_");'>
+<div class="flex flex-col gap-3 text-center w-full max-w-sm">
+<h1 class="text-slate-100 text-5xl font-black leading-[1.1] tracking-[-0.02em] uppercase">
+                        Rush the night.<br/>Break the rules.<br/><span class="text-primary">Be HOF.</span>
+</h1>
+<h2 class="text-slate-300 text-base font-medium tracking-widest uppercase mt-2">House of Fiesta · Cancún</h2>
+<button class="mt-4 flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-6 bg-primary text-slate-100 text-lg font-bold tracking-widest uppercase hover:bg-primary/90 transition-colors shadow-[0_0_20px_rgba(229,6,21,0.4)]">
+                        Get In
+                    </button>
+</div>
+</div>
+</div>
+<main class="flex-1 flex flex-col gap-8 pb-12">
+<!-- VIP Section -->
+<section class="px-4">
+<h2 class="text-2xl font-black leading-tight uppercase tracking-tight mb-4 text-slate-100">You're one of us now.</h2>
+<div class="flex flex-col items-stretch justify-start rounded-xl overflow-hidden shadow-lg bg-surface border border-slate-800">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="VIP lounge area in a club with premium bottles" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9S6gCb2KYoVL8wmB1z4LS4N0bT9hjAPk5RcreV556cFMbkXNlErTPVdaNUC3k8dCLjDSwbKjQlw2Dj7JYXU0lIXYBvubc2bFhvwBfy3THTJEmO626vNgl-rSsGN7XxVxuij4glWM2IyTIx0dKPiTfcIzzXvt1QWHTozAHoSi3g4HIeqBPWh-BoyQ8mJZEBL3-VLvcGeU5C_w1Szi263Ya1gJFSWmAVT7qidKfu16L8479js-FAJKmIgiDwyj7HLIzoufMS4s6GDVU");'></div>
+<div class="flex w-full flex-col items-stretch justify-center gap-2 p-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-lg">workspace_premium</span>
+<p class="text-accent text-xs font-bold uppercase tracking-wider">Gold VIP</p>
+</div>
+<p class="text-xl font-bold leading-tight text-slate-100">The Ultimate Rush</p>
+<p class="text-slate-400 text-sm font-medium mt-1 mb-2">Skip the line. Premium bottle service. Own the night.</p>
+<button class="flex w-full cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary/10 text-primary border border-primary/30 text-sm font-bold uppercase tracking-wider hover:bg-primary hover:text-white transition-colors">
+                            Upgrade Experience
+                        </button>
+</div>
+</div>
+</section>
+<!-- Event Card Section -->
+<section class="px-4">
+<h2 class="text-2xl font-black leading-tight uppercase tracking-tight mb-4 text-slate-100">Ritual. Brotherhood. Chaos.</h2>
+<div class="flex flex-col rounded-xl overflow-hidden bg-surface border border-slate-800 p-4 relative">
+<div class="absolute top-0 right-0 bg-primary text-slate-100 text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-bl-lg z-10">
+                        Red Hot
+                    </div>
+<div class="flex gap-4">
+<div class="w-24 h-24 bg-cover bg-center rounded-lg shrink-0" data-alt="DJ playing music at a party" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAh39HpcsnbxaB_eXpB9twLF0R7iAuBLzrh-0eV3qS851D2w7SByFehax-RLQHC3hjLKDdQtUF7h16M0NQlJ5y2oBsUDZYc_VVs1xT7Bwh9xKdjgIkwYq0ycJEOG8-v15NaK-PWiKeaBh-grEJMIu_UIAOI2mj6_Rxgkq5cKd6P_NnCzC9CYQSKxggKNZ8-rSKt6rIP71AxVOf0-i_cya9CtSj5ENfuQeWn-JDbAogxk9UUh_tB3VpSoDm5X5poUXcVPC--riZNK-uc");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-primary text-xs font-bold uppercase mb-1">Tonight · 10PM</p>
+<h3 class="text-lg font-bold text-slate-100 leading-tight">Spring Break Kickoff</h3>
+<p class="text-slate-400 text-sm mt-1">Guest DJ • Open Bar til 12</p>
+</div>
+</div>
+<button class="mt-4 flex w-full cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-transparent border-2 border-primary text-primary text-sm font-bold uppercase tracking-wider hover:bg-primary/10 transition-colors">
+                        Join the Guestlist
+                    </button>
+</div>
+</section>
+<!-- Gallery/Vibe Section -->
+<section class="px-4">
+<h2 class="text-2xl font-black leading-tight uppercase tracking-tight mb-4 text-slate-100">Sweat. Glow. Repeat.</h2>
+<div class="grid grid-cols-2 gap-3">
+<div class="aspect-square rounded-xl bg-cover bg-center" data-alt="People dancing under neon lights" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAhqPe4S1yLtAqBToxQdW9dhYN48YbPHXK269KqdQq_ugH7OrdE4elKoe_TKzbdGWs29Dh0UxIO76IFO5ZvW4B8GKKOX3sVHaei4wqlKUXZ_PwNqqLTK1cY6LvmsvX2sdVL__kk4_gDWqD6zfr5KnVpKo9r8m3vCatqOXHwJnWIUkwsaUk01uIgWigaPq0UnL-AxDGWX7jvgb_UaVpsW5vGYrEUHbMXPLpRNn8gOFsSeOacQWvJo8pWARuBXdyjKkIDOEnOCX0Pv06X");'></div>
+<div class="aspect-square rounded-xl bg-cover bg-center" data-alt="Red party cups scattered on a table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKqyfYWsWKYOy_kmoE-wxXXZ6161hITP4zvE5UDYFYc_f6A5ilDfUFP8PebzaYYyvv7_CbmBVvxFoyz6-8NQgjTg1HDopVx0GFxV3gmuK6-Zcmz-e7hb96r3SZEB09wKki4VviFdbShjCo3oMx-aYqnomf2NiMnFcs61qZ0q1ORvXvcYLgLa_aFAVKbVpKs2ZeNB1Q-lQWqyyhcmOCMRbqdaZU4qiR3ERbVdyMYiXc59xcKbCIP-PJLShvXbaTGw2bMEi3zSRD_EX3");'></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="mt-auto border-t border-slate-800/50 bg-background-dark py-8 px-4 text-center">
+<h2 class="text-2xl font-black text-slate-100 tracking-widest mb-2">HOF</h2>
+<p class="text-slate-500 text-xs font-medium uppercase tracking-widest mb-6">House of Fiesta · Cancún</p>
+<div class="flex justify-center gap-6 mb-8 text-slate-400">
+<span class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors">share</span>
+<span class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors">location_on</span>
+<span class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors">mail</span>
+</div>
+<p class="text-slate-600 text-[10px] uppercase tracking-wider">© 2024 House of Fiesta. All rights reserved.</p>
+</footer>
+</div>
+</body></html>

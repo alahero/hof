@@ -1,0 +1,408 @@
+/* HOF Design System — CSS custom properties (design-system/HOF-Design-System.md) */
+:root {
+  --hof-primary: #E30613;
+  --hof-secondary: #FFA800;
+  --hof-neutral: #000000;
+  --hof-accent-1: #3C9945;
+  --hof-accent-2: #069DE3;
+  --hof-surface: #E9E9E9;
+  --hof-bg: #0A0A0A;
+  --hof-surface-dark: #1A1A1A;
+  --hof-surface-dark-2: #252525;
+  --hof-motion-fast: 250ms;
+  --hof-motion-normal: 400ms;
+  --hof-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --font-heading: 'Oswald', system-ui, sans-serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--hof-bg);
+  color: var(--hof-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Hero section (module) ---------- */
+.hof-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background-color: var(--hof-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.hof-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 20%, rgba(227, 6, 19, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hof-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.hof-hero__label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  letter-spacing: 0.4em;
+  color: var(--hof-secondary);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.hof-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hof-hero__title .hof-vertical-reveal {
+  justify-content: center;
+}
+
+.hof-hero__title-accent {
+  color: var(--hof-primary);
+}
+
+/* Vertical cut reveal (hero title) — same font/size as .hof-hero__title */
+.hof-hero__title-line {
+  display: block;
+}
+
+.hof-vertical-reveal {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: pre-wrap;
+}
+
+.hof-vertical-reveal--lines {
+  flex-direction: column;
+}
+
+.hof-vertical-reveal__word {
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.hof-vertical-reveal__char {
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.hof-vertical-reveal__motion {
+  display: inline-block;
+}
+
+.hof-hero__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--hof-surface);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hof-hero__cta {
+  margin-top: 1.5rem;
+}
+
+/* ---------- Section headings (shared) ---------- */
+.hof-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.hof-section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--hof-secondary);
+  margin: 0 0 2rem;
+}
+
+/* ---------- Experience section (module) ---------- */
+.hof-experience {
+  padding: 4rem 1.5rem;
+}
+
+.hof-experience__inner {
+  max-width: 64rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hof-experience__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.hof-card {
+  position: relative;
+  background: var(--hof-surface-dark);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hof-card__badge {
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.hof-card__badge--gold {
+  background: var(--hof-secondary);
+  color: #000;
+}
+
+.hof-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.hof-card__text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--hof-surface);
+  margin: 0 0 1.25rem;
+  line-height: 1.5;
+}
+
+.hof-card button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Playlist section (module) ---------- */
+.hof-playlist {
+  padding: 4rem 1.5rem;
+  background: var(--hof-surface-dark);
+}
+
+.hof-playlist__inner {
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hof-playlist__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hof-playlist__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--hof-surface-dark-2);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  text-align: left;
+}
+
+.hof-playlist__tag {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: var(--hof-secondary);
+  color: #000;
+}
+
+.hof-playlist__tag--red {
+  background: var(--hof-primary);
+  color: #fff;
+}
+
+.hof-playlist__item-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0;
+}
+
+.hof-playlist__item-meta {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--hof-surface);
+  margin: 0.25rem 0 0;
+}
+
+/* ---------- Location section (module) ---------- */
+.hof-location {
+  padding: 4rem 1.5rem;
+}
+
+.hof-location__inner {
+  max-width: 36rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hof-location__card {
+  background: var(--hof-surface-dark);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.hof-location__address {
+  margin-bottom: 1rem;
+}
+
+.hof-location__name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.hof-location__line {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--hof-surface);
+  margin: 0;
+}
+
+.hof-location__link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--hof-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color var(--hof-motion-fast) var(--hof-ease);
+}
+
+.hof-location__link:hover {
+  color: var(--hof-secondary);
+}
+
+.hof-location__map-placeholder {
+  height: 200px;
+  background: var(--hof-surface-dark-2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hof-location__map-label {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--hof-surface);
+  opacity: 0.7;
+}
+
+/* ---------- Header (global) ---------- */
+.hof-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.hof-header__inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.hof-header__logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--hof-primary);
+  text-decoration: none;
+  transition: color var(--hof-motion-fast) var(--hof-ease);
+}
+
+.hof-header__logo:hover {
+  color: #fff;
+}
+
+.hof-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hof-header__link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--hof-surface);
+  text-decoration: none;
+  transition: color var(--hof-motion-fast) var(--hof-ease);
+}
+
+.hof-header__link:hover {
+  color: var(--hof-primary);
+}

@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+
+# Local env and secrets (do not commit API keys)
+.env
+.env.local
+.cursor/mcp.json
+
+# Large assets (GitHub file limit 100MB; keep brandbook local only)
+HOF_Brandbook_2025.pdf
+
+# Editor / OS
+.DS_Store
+*.log
