@@ -46,7 +46,49 @@ export default function App() {
     <>
       <Header />
       <main>
-        <HeroSection />
+        <div style={{ position: 'relative' }}>
+          <HeroSection />
+          {/* 3 Red Cup overlays — posiciones/tamaños responsivos (%, vh, clamp) */}
+          <RedCup
+            fps={24}
+            style={{
+              inset: 'auto',
+              top: '19vh',
+              left: '4.5%',
+              width: 'fit-content',
+              height: 'clamp(280px, 50vh, 546px)',
+              zIndex: 10,
+              transform: 'rotate(-25deg)',
+            }}
+          />
+          <RedCup
+            fps={24}
+            style={{
+              inset: 'auto',
+              top: '6.5vh',
+              right: '10%',
+              left: 'auto',
+              width: 'clamp(120px, 10.5vw, 203px)',
+              height: 'clamp(180px, 30vh, 327px)',
+              zIndex: 30,
+              transform: 'rotate(34deg)',
+              filter: 'blur(5px)',
+            }}
+          />
+          <RedCup
+            fps={24}
+            style={{
+              inset: 'auto',
+              top: '30%',
+              right: '8%',
+              left: 'auto',
+              width: 'fit-content',
+              height: 'clamp(400px, 72vh, 783px)',
+              zIndex: 10,
+              transform: 'rotate(18deg)',
+            }}
+          />
+        </div>
         <ExperienceSection />
         <PlaylistSection />
         <LocationSection />

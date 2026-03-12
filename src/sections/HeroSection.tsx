@@ -2,9 +2,8 @@ import { motion } from 'framer-motion';
 import { CTAButton } from '../components/CTAButton';
 import { VerticalCutReveal } from '../components/ui/vertical-cut-reveal';
 
-/** Hero background: nightlife/party vibe — swap URL to change image. */
-const HERO_IMAGE_URL =
-  'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1920&q=85';
+/** Hero background: imagen local en public/images (editar el archivo para cambiar). */
+const HERO_IMAGE_PATH = '/images/hero-background.jpg';
 
 /**
  * Hero section module — HOF homepage.
@@ -16,7 +15,7 @@ export function HeroSection() {
       className="hof-hero"
       aria-label="Hero"
       style={{
-        backgroundImage: `linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.75) 45%, rgba(0,0,0,0.95) 100%), url(${HERO_IMAGE_URL})`,
+        backgroundImage: `linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.75) 45%, rgba(0,0,0,0.95) 100%), url(${HERO_IMAGE_PATH})`,
       }}
     >
       <div className="hof-hero__overlay" />
