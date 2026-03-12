@@ -9,14 +9,14 @@ import {
   useRef,
   useState,
 } from 'react';
-import type { DynamicAnimationOptions } from 'framer-motion';
+import type { AnimationOptions } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface TextProps {
   children: React.ReactNode;
   reverse?: boolean;
-  transition?: DynamicAnimationOptions;
+  transition?: AnimationOptions;
   splitBy?: 'words' | 'characters' | 'lines' | string;
   staggerDuration?: number;
   staggerFrom?: 'first' | 'last' | 'center' | 'random' | number;
@@ -68,8 +68,10 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
     const [isAnimating, setIsAnimating] = useState(false);
 
     const splitIntoCharacters = (str: string): string[] => {
-      if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
-        const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+      // Intl.Segmenter no está en los tipos estándar de TS en todos los entornos (p. ej. Vercel)
+      const IntlWithSegmenter = Intl as typeof Intl & { Segmenter?: new (locale: string, options?: { granularity: string }) => { segment: (s: string) => IterableIterator<{ segment: string }> } };
+      if (typeof Intl !== 'undefined' && IntlWithSegmenter.Segmenter) {
+        const segmenter = new IntlWithSegmenter.Segmenter('en', { granularity: 'grapheme' });
         return Array.from(segmenter.segment(str), ({ segment }) => segment);
       }
       return Array.from(str);
