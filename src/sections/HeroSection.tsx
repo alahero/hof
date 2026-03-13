@@ -25,7 +25,18 @@ export function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        <span className="hof-hero__label">House of Fiesta</span>
+        <motion.span
+          className="hof-hero__label"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.4,
+            delay: 0.75,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        >
+          House of Fiesta
+        </motion.span>
         <h1 className="hof-hero__title" aria-label="Rush the night. Break the rules. Be HOF.">
           <VerticalCutReveal
             splitBy="characters"
@@ -59,10 +70,30 @@ export function HeroSection() {
             Be HOF.
           </VerticalCutReveal>
         </h1>
-        <p className="hof-hero__subtitle">Cancún · One tribe</p>
-        <div className="hof-hero__cta">
+        <motion.p
+          className="hof-hero__subtitle"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.4,
+            delay: 0.9,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        >
+          Cancún · One tribe
+        </motion.p>
+        <motion.div
+          className="hof-hero__cta"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.4,
+            delay: 1.05,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        >
           <CTAButton primary>Get in</CTAButton>
-        </div>
+        </motion.div>
       </motion.div>
     </header>
   );

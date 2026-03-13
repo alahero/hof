@@ -66,8 +66,9 @@ body {
 .hof-hero__label {
   display: block;
   font-family: var(--font-heading);
-  font-size: clamp(0.75rem, 2vw, 0.9rem);
-  letter-spacing: 0.4em;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 13.3px;
   color: var(--hof-secondary);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -75,9 +76,9 @@ body {
 
 .hof-hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-size: 119px;
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 118px;
   letter-spacing: -0.02em;
   color: #fff;
   margin: 0;
@@ -161,6 +162,13 @@ body {
   max-width: 64rem;
   margin: 0 auto;
   text-align: center;
+}
+
+.hof-experience__title {
+  font-size: 65px;
+  letter-spacing: -2.5px;
+  line-height: 1;
+  color: var(--hof-secondary);
 }
 
 .hof-experience__grid {
