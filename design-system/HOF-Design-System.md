@@ -68,6 +68,13 @@ Design system derived from *HOF_Brandbook_2025*. Mandatory use for the dynamic w
   - Typical duration: 200–400 ms for micro-interactions; 400–600 ms for page or module transitions.
 - **Easing:** Prefer `ease-out` or custom curves (e.g. cubic-bezier) for a “premium” feel.
 
+### Section entrance (all sections except Hero)
+
+- **Trigger:** Viewport only. The entrance runs when the section enters view (`whileInView`, `once: true`). No animation if the user never scrolls to the section.
+- **Sequence:** (1) Title and subtitle fade in; (2) main content (cards, list items, blocks) enter from below (opacity 0→1, translateY 24px→0) with **stagger** (default 0.2s between elements).
+- **Implementation:** Use `SectionWrapper` with `innerClassName` for the layout wrapper. Pass motion children with variants from `src/lib/hof-motion.ts`: `sectionEntranceItemVariants` for title/subtitle (fade), `sectionEntranceItemFromBelowVariants` for cards/items, `sectionEntranceNestedContainerVariants` for grids/lists that stagger their children. Do **not** use this pattern for the Hero section; Hero keeps its own entrance (title reveal, then label/subtitle/CTA).
+- **Tokens:** `HOF_EASE`, `SECTION_ENTRANCE_STAGGER`, `SECTION_ENTRANCE_VIEWPORT`; see `hof-motion.ts`.
+
 ---
 
 ## 6. Suggested Components (tokens)

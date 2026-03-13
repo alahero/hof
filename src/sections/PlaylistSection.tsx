@@ -1,9 +1,14 @@
 import { motion } from 'framer-motion';
 import { SectionWrapper } from '../components/SectionWrapper';
+import {
+  sectionEntranceItemVariants,
+  sectionEntranceItemFromBelowVariants,
+  sectionEntranceNestedContainerVariants,
+} from '../lib/hof-motion';
 
 /**
  * Playlist section module — Tonight's vibe, featured tracks or sets.
- * Edit tracks, title, or layout here without touching other sections.
+ * Entrada según design system: título/subtítulo fade-in, luego ítems de lista con stagger.
  */
 const PLAYLIST_ITEMS = [
   { label: 'Spring Break Kickoff', meta: 'Guest DJ · Open bar til 12', tag: 'Tonight' },
@@ -13,34 +18,36 @@ const PLAYLIST_ITEMS = [
 
 export function PlaylistSection() {
   return (
-    <SectionWrapper id="playlist" className="hof-playlist">
-      <div className="hof-playlist__inner">
-        <h2 className="hof-section-title">Playlist</h2>
-        <p className="hof-section-subtitle">Sweat. Glow. Repeat.</p>
+    <SectionWrapper id="playlist" className="hof-playlist" innerClassName="hof-playlist__inner">
+      <motion.h2 className="hof-section-title" variants={sectionEntranceItemVariants}>
+        Playlist
+      </motion.h2>
+      <motion.p className="hof-section-subtitle" variants={sectionEntranceItemVariants}>
+        Sweat. Glow. Repeat.
+      </motion.p>
 
-        <ul className="hof-playlist__list">
-          {PLAYLIST_ITEMS.map((item, i) => (
-            <motion.li
-              key={item.label}
-              className="hof-playlist__item"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: i * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
+      <motion.ul
+        className="hof-playlist__list"
+        variants={sectionEntranceNestedContainerVariants}
+      >
+        {PLAYLIST_ITEMS.map((item) => (
+          <motion.li
+            key={item.label}
+            className="hof-playlist__item"
+            variants={sectionEntranceItemFromBelowVariants}
+          >
+            <span
+              className={`hof-playlist__tag ${item.tag === 'Hot' ? 'hof-playlist__tag--red' : ''}`}
             >
-              <span
-                className={`hof-playlist__tag ${item.tag === 'Hot' ? 'hof-playlist__tag--red' : ''}`}
-              >
-                {item.tag}
-              </span>
-              <div className="hof-playlist__item-content">
-                <h3 className="hof-playlist__item-title">{item.label}</h3>
-                <p className="hof-playlist__item-meta">{item.meta}</p>
-              </div>
-            </motion.li>
-          ))}
-        </ul>
-      </div>
+              {item.tag}
+            </span>
+            <div className="hof-playlist__item-content">
+              <h3 className="hof-playlist__item-title">{item.label}</h3>
+              <p className="hof-playlist__item-meta">{item.meta}</p>
+            </div>
+          </motion.li>
+        ))}
+      </motion.ul>
     </SectionWrapper>
   );
 }

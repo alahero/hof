@@ -19,6 +19,7 @@ Applies to UI components and styles. Every interface and animation must follow t
 - Easing: `ease-out` or custom curve (cubic-bezier) for a premium feel. Avoid linear on entrances.
 - Block entry: fade + slight vertical movement (e.g. opacity 0→1, translateY 20px→0).
 - Hover on CTAs/cards: subtle scale (1 → 1.02–1.05) and/or brightness change; do not overdo it.
+- **Section entrance (all sections except Hero):** Viewport-triggered only. Use `SectionWrapper` + variants from `src/lib/hof-motion.ts`: title/subtitle with `sectionEntranceItemVariants` (fade), content blocks/cards with `sectionEntranceItemFromBelowVariants`, grids/lists with `sectionEntranceNestedContainerVariants` for stagger. Hero section does not use this pattern; it keeps its own entrance.
 
 ## Preferred Patterns
 
@@ -45,30 +46,30 @@ Applies to UI components and styles. Every interface and animation must follow t
 }
 ```
 
-### React + Framer Motion (section entry)
+### React + Framer Motion (section entrance — all sections except Hero)
+
+Use `SectionWrapper` with `innerClassName` and motion children that use variants from `src/lib/hof-motion.ts`. Title/subtitle: `sectionEntranceItemVariants` (fade). Cards, list items, blocks: `sectionEntranceItemFromBelowVariants`. Grids/lists that stagger their children: wrap in a motion container with `sectionEntranceNestedContainerVariants` and give each child `sectionEntranceItemFromBelowVariants`. Do not use this for Hero.
 
 ```tsx
 import { motion } from 'framer-motion';
+import { SectionWrapper } from '../components/SectionWrapper';
+import {
+  sectionEntranceItemVariants,
+  sectionEntranceItemFromBelowVariants,
+  sectionEntranceNestedContainerVariants,
+} from '../lib/hof-motion';
 
-const container = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
-  }
-};
-
-export function Section({ children }) {
+export function MySection() {
   return (
-    <motion.section
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-    >
-      {children}
-    </motion.section>
+    <SectionWrapper id="my-section" className="hof-mysection" innerClassName="hof-mysection__inner">
+      <motion.h2 className="hof-section-title" variants={sectionEntranceItemVariants}>Title</motion.h2>
+      <motion.p className="hof-section-subtitle" variants={sectionEntranceItemVariants}>Subtitle</motion.p>
+      <motion.div className="hof-mysection__grid" variants={sectionEntranceNestedContainerVariants}>
+        {items.map((item) => (
+          <motion.div key={item.id} variants={sectionEntranceItemFromBelowVariants}>...</motion.div>
+        ))}
+      </motion.div>
+    </SectionWrapper>
   );
 }
 ```
