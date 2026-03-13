@@ -29,36 +29,50 @@ const EXPERIENCE_CARDS = [
 export function ExperienceSection() {
   return (
     <SectionWrapper id="experience" className="hof-experience" innerClassName="hof-experience__inner">
-      <motion.h2
-        className="hof-section-title hof-experience__title"
-        variants={sectionEntranceItemVariants}
-      >
-        You&apos;re one of us now.
-      </motion.h2>
-      <motion.p
-        className="hof-section-subtitle"
-        variants={sectionEntranceItemVariants}
-      >
-        EXPERIENCE THE BROTHERHOOD
-      </motion.p>
+      <div className="hof-experience__content">
+        <img
+          src="/images/hof-red-cup.webp"
+          alt=""
+          className="hof-deco hof-deco--cup"
+          aria-hidden="true"
+        />
+        <motion.h2
+          className="hof-section-title hof-experience__title"
+          variants={sectionEntranceItemVariants}
+        >
+          You&apos;re one of us now.
+        </motion.h2>
+        <motion.p
+          className="hof-section-subtitle hof-experience__subtitle"
+          variants={sectionEntranceItemVariants}
+        >
+          EXPERIENCE THE BROTHERHOOD
+        </motion.p>
 
-      <motion.div
-        className="hof-experience__grid"
-        variants={sectionEntranceNestedContainerVariants}
-      >
-        {EXPERIENCE_CARDS.map((card) => (
-          <motion.div
-            key={card.title}
-            className="hof-card"
-            variants={sectionEntranceItemFromBelowVariants}
-            whileHover={{ scale: 1.02, filter: 'brightness(1.05)' }}
-            transition={{ duration: 0.25, ease: HOF_EASE }}
-          >
-            <h3 className="hof-card__title">{card.title}</h3>
-            <p className="hof-card__text">{card.copy}</p>
-          </motion.div>
-        ))}
-      </motion.div>
+        <motion.div
+          className="hof-experience__grid"
+          variants={sectionEntranceNestedContainerVariants}
+        >
+          {EXPERIENCE_CARDS.map((card) => (
+            <motion.div
+              key={card.title}
+              className="hof-card"
+              variants={sectionEntranceItemFromBelowVariants}
+              whileHover={{ scale: 1.02, filter: 'brightness(1.05)' }}
+              transition={{ duration: 0.25, ease: HOF_EASE }}
+            >
+              <h3 className="hof-card__title">{card.title}</h3>
+              <p className="hof-card__text">{card.copy}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+        <img
+          src="/images/hof-football.webp"
+          alt=""
+          className="hof-deco hof-deco--football"
+          aria-hidden="true"
+        />
+      </div>
     </SectionWrapper>
   );
 }

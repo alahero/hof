@@ -14,10 +14,10 @@ export default function App() {
     <>
       <Header />
       <main>
-        <div style={{ position: 'relative' }}>
+        <div className="hof-hero-experience-wrap">
           <HeroSection />
+          <ExperienceSection />
         </div>
-        <ExperienceSection />
         <PlaylistSection />
         <LocationSection />
       </main>

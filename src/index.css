@@ -45,15 +45,22 @@ body {
   text-align: center;
   padding: 2rem 1.5rem;
   background-color: var(--hof-bg);
+  overflow: hidden;
+}
+
+.hof-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  overflow: hidden;
 }
 
 .hof-hero__overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: radial-gradient(ellipse 80% 50% at 50% 20%, rgba(227, 6, 19, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
@@ -153,15 +160,103 @@ body {
   margin: 0 0 2rem;
 }
 
+/* ---------- Hero + Experience wrapper ---------- */
+.hof-hero-experience-wrap {
+  position: relative;
+}
+
+/* ---------- Decorative assets (cup + football) ---------- */
+.hof-deco {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  object-fit: contain;
+  width: min(25vw, 320px);
+  height: auto;
+}
+
+.hof-deco--cup {
+  left: -380px;
+  top: -180px;
+  width: 739px;
+  height: fit-content;
+  transform: rotate(9deg);
+}
+
+.hof-deco--football {
+  width: 523px;
+  height: fit-content;
+  right: -180px;
+  left: auto;
+  top: -120px;
+  transform: rotate(12deg);
+}
+
 /* ---------- Experience section (module) ---------- */
 .hof-experience {
   padding: 4rem 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .hof-experience__inner {
   max-width: 64rem;
   margin: 0 auto;
   text-align: center;
+}
+
+/* Wrapper para título, cards y decos; en desktop los decos se posicionan aquí. */
+.hof-experience__content {
+  position: relative;
+  min-height: 1px;
+}
+
+/* Mobile: cup arriba del título, football debajo de las cards (flujo en columna). */
+@media (max-width: 767px) {
+  .hof-experience__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hof-deco {
+    position: static;
+    width: min(60vw, 280px);
+    height: auto;
+    margin: 0.5rem auto;
+  }
+
+  .hof-deco--cup {
+    order: 1;
+    left: auto;
+    top: auto;
+  }
+
+  .hof-deco--football {
+    order: 5;
+    right: auto;
+    left: auto;
+    top: auto;
+  }
+
+  .hof-experience__title {
+    order: 2;
+  }
+
+  .hof-experience__subtitle {
+    order: 3;
+  }
+
+  .hof-experience__grid {
+    order: 4;
+  }
+}
+
+/* Contenido central por encima de los decos (cup/football) en desktop. */
+.hof-experience__title,
+.hof-experience__subtitle,
+.hof-experience__grid {
+  position: relative;
+  z-index: 2;
 }
 
 .hof-experience__title {
