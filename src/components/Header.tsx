@@ -22,7 +22,7 @@ const headerNavVariants = {
  */
 const HEADER_LINKS = [
   { href: '#experience', label: 'Experience' },
-  { href: '#playlist', label: 'Playlist' },
+  { href: '#playlist', label: 'Anthems' },
   { href: '#location', label: 'Location' },
 ] as const;
 

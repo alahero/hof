@@ -5,19 +5,30 @@ import { VerticalCutReveal } from '../components/ui/vertical-cut-reveal';
 /** Hero background: imagen local en public/images (editar el archivo para cambiar). */
 const HERO_IMAGE_PATH = '/images/hero-background.jpg';
 
+/** Cuando termina el contenido del hero (CTA: delay 1.05 + duration 0.4 ≈ 1.45s). La imagen escala 120% → 100% a partir de este delay. */
+const HERO_BG_SCALE_DELAY = 1.5;
+
 /**
  * Hero section module — HOF homepage.
- * Edit copy, background, or CTA here without touching other sections.
+ * Fondo: empieza a 120% scale; al terminar las animaciones del contenido, escala a 100%.
  */
 export function HeroSection() {
   return (
-    <header
-      className="hof-hero"
-      aria-label="Hero"
-      style={{
-        backgroundImage: `linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.75) 45%, rgba(0,0,0,0.95) 100%), url(${HERO_IMAGE_PATH})`,
-      }}
-    >
+    <header className="hof-hero" aria-label="Hero">
+      <motion.div
+        className="hof-hero__bg"
+        aria-hidden="true"
+        initial={{ scale: 1.2 }}
+        animate={{ scale: 1 }}
+        transition={{
+          duration: 0.8,
+          delay: HERO_BG_SCALE_DELAY,
+          ease: 'easeInOut',
+        }}
+        style={{
+          backgroundImage: `linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.75) 45%, rgba(0,0,0,0.95) 100%), url(${HERO_IMAGE_PATH})`,
+        }}
+      />
       <div className="hof-hero__overlay" />
       <motion.div
         className="hof-hero__content"
