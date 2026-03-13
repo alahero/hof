@@ -21,6 +21,7 @@ If the project uses Next.js: `npm run dev`, `npm run build`, `npm run start`. Ad
 ## Rules and Skills
 
 - **Design and motion rule:** Applies to all UI and animations. See @.agent/rules/hof-design-and-motion.md
+- **Commit and sync rule:** When committing and syncing HOF, push to Mandala Group (origin) first, then mirror to Alahero (alahero). If the user asks to commit/sync to another branch, ask which branch to use on each repo. See @.agent/rules/hof-commit-and-sync.md
 - **HOF Design System skill:** Activate when implementing or reviewing UI, components, animations, or brand consistency. See @.agent/skills/hof-design-system/SKILL.md
 
 ## Security Limits
