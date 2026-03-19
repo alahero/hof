@@ -8,7 +8,7 @@ import { Footer } from '../components/Footer';
 
 /**
  * Página principal HOF — mismo layout que el rediseño (tema claro).
- * Ruta /; /redesign reutiliza este componente.
+ * Ruta única: / (tema claro).
  */
 export default function HomePage() {
   return (

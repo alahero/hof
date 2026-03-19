@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { CTAButton } from '../components/CTAButton';
 import { VerticalCutReveal } from '../components/ui/vertical-cut-reveal';
+import { HOF_MANDALA_TICKETS_URL } from '../lib/hof-nav-links';
 import { publicUrl } from '../lib/publicUrl';
 
-/** Hero background: imagen local en public/images (editar el archivo para cambiar). */
-const HERO_IMAGE_PATH = publicUrl('images/HOF-Hero.png');
+/** Fondo del hero: JPEG optimizado en public/images (sustituir archivo si cambia el arte). */
+const HERO_IMAGE_PATH = publicUrl('images/hero-background.jpg');
 
 /** Cuando termina el contenido del hero (CTA: delay 1.05 + duration 0.4 ≈ 1.45s). La imagen escala 120% → 100% a partir de este delay. */
 const HERO_BG_SCALE_DELAY = 1.5;
@@ -96,7 +97,9 @@ export function HeroSection() {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          <CTAButton primary>Get in</CTAButton>
+          <CTAButton primary href={HOF_MANDALA_TICKETS_URL}>
+            Get in
+          </CTAButton>
         </motion.div>
       </motion.div>
     </header>

@@ -5,6 +5,7 @@ import {
   sectionEntranceItemFromBelowVariants,
   sectionEntranceNestedContainerVariants,
 } from '../lib/hof-motion';
+import { HOF_MENU_URL } from '../lib/hof-nav-links';
 import { publicUrl } from '../lib/publicUrl';
 
 const FRAME_COUNT = 148;
@@ -31,9 +32,6 @@ const FOOD_GALLERY_RIGHT = [
 /** Rotaciones (deg) por índice para el abanico; Framer fusiona con translateY de la variante. */
 const PHOTO_ROTATE_LEFT = [-7, -14, -4] as const;
 const PHOTO_ROTATE_RIGHT = [8, 13, 5] as const;
-
-/** Enlace al menú (PDF o web del venue); sustituir cuando exista URL definitiva. */
-const MENU_HREF = 'https://mandalatickets.com';
 
 /** Construye la ruta de un frame por índice (1-based). */
 function frameSrc(index: number): string {
@@ -173,7 +171,7 @@ export function BurgerBurst() {
         </motion.h2>
 
         <motion.a
-          href={MENU_HREF}
+          href={HOF_MENU_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="hof-food__menu-cta"
