@@ -7,12 +7,12 @@ import { LocationSection } from '../sections/LocationSection';
 import { Footer } from '../components/Footer';
 
 /**
- * Página principal HOF — secciones modulares.
- * Usada en / y en /redesign como duplicado.
+ * Página principal HOF — mismo layout que el rediseño (tema claro).
+ * Ruta /; /redesign reutiliza este componente.
  */
 export default function HomePage() {
   return (
-    <>
+    <div className="hof-theme-light">
       <Header />
       <main>
         <div className="hof-hero-experience-wrap">
@@ -24,6 +24,6 @@ export default function HomePage() {
         <LocationSection />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

@@ -52,7 +52,7 @@ export function HeroSection() {
         >
           House of Fiesta
         </motion.span>
-        <h1 className="hof-hero__title" aria-label="Rush the night. Break the rules. Be HOF.">
+        <h1 className="hof-hero__title" aria-label="Rush the night. Break the rules.">
           <VerticalCutReveal
             splitBy="characters"
             staggerDuration={0.03}
@@ -72,17 +72,6 @@ export function HeroSection() {
             autoStart
           >
             Break the rules.
-          </VerticalCutReveal>
-          <VerticalCutReveal
-            splitBy="characters"
-            staggerDuration={0.03}
-            staggerFrom="first"
-            transition={{ type: 'spring', stiffness: 200, damping: 21, delay: 0.5 }}
-            containerClassName="hof-hero__title-line"
-            elementLevelClassName="hof-hero__title-accent"
-            autoStart
-          >
-            Be HOF.
           </VerticalCutReveal>
         </h1>
         <motion.p

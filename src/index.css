@@ -126,22 +126,13 @@ body {
   justify-content: center;
 }
 
-/* Sombra clara solo fuera del acento "Be HOF." (el h1 la heredaba visualmente a todos los glyphs). */
-.hof-hero__title .hof-vertical-reveal__char:not(.hof-hero__title-accent) .hof-vertical-reveal__motion {
+/* Sombra clara en el titular del hero (el h1 no lleva text-shadow para no duplicar en anidados). */
+.hof-hero__title .hof-vertical-reveal__char .hof-vertical-reveal__motion {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.95), 0 2px 24px rgba(255, 255, 255, 0.45);
 }
 
 /* Punto final de cada línea (p. ej. "night." / "rules.") sin halo blanco. */
 .hof-hero__title .hof-vertical-reveal__word:last-child .hof-vertical-reveal__char:last-child .hof-vertical-reveal__motion {
-  text-shadow: none;
-}
-
-.hof-hero__title-accent {
-  color: var(--hof-primary);
-  text-shadow: none;
-}
-
-.hof-hero__title .hof-hero__title-accent .hof-vertical-reveal__motion {
   text-shadow: none;
 }
 
