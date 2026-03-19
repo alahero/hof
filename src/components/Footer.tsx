@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { HOF_LOGO_SVG_URL } from '../lib/hof-assets';
 import { HOF_NAV_LINKS, MANDALA_TICKETS_FOOTER_LINKS } from '../lib/hof-nav-links';
 
@@ -13,16 +14,17 @@ export function Footer() {
     >
       <div className="hof-footer__inner">
         <div className="hof-footer__col hof-footer__brand">
-          <a href="#" className="hof-footer__logo" aria-label="HOF Home">
+          <Link to="/" className="hof-footer__logo" aria-label="HOF Home">
             <img
               src={HOF_LOGO_SVG_URL}
-              alt=""
+              alt="HOF — House of Fiesta logo"
               className="hof-footer__logo-img"
               width={160}
               height={106}
               decoding="async"
+              loading="lazy"
             />
-          </a>
+          </Link>
           <p className="hof-footer__brand-line">House of Fiesta</p>
           <p className="hof-footer__desc">
             Cancún&apos;s high-energy nightlife experience — one tribe, peak rush, no limits. Part of Mandala Group.

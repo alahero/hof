@@ -131,6 +131,8 @@ export function BurgerBurst() {
               className={`hof-food__photo-card hof-food__photo-card--left-${i}`}
               src={src}
               alt=""
+              loading="lazy"
+              decoding="async"
               variants={sectionEntranceItemFromBelowVariants}
               style={{ rotate: PHOTO_ROTATE_LEFT[i] }}
               draggable={false}
@@ -156,6 +158,8 @@ export function BurgerBurst() {
               className={`hof-food__photo-card hof-food__photo-card--right-${i}`}
               src={src}
               alt=""
+              loading="lazy"
+              decoding="async"
               variants={sectionEntranceItemFromBelowVariants}
               style={{ rotate: PHOTO_ROTATE_RIGHT[i] }}
               draggable={false}

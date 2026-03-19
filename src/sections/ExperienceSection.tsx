@@ -36,6 +36,8 @@ export function ExperienceSection() {
           alt=""
           className="hof-deco hof-deco--cup"
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
         />
         <motion.h2
           className="hof-section-title hof-experience__title"
@@ -72,6 +74,8 @@ export function ExperienceSection() {
           alt=""
           className="hof-deco hof-deco--football"
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </SectionWrapper>

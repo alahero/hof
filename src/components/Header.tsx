@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CTAButton } from './CTAButton';
 import {
@@ -10,6 +11,8 @@ import { HOF_LOGO_SVG_URL } from '../lib/hof-assets';
 import { HOF_MANDALA_TICKETS_URL, HOF_NAV_LINKS } from '../lib/hof-nav-links';
 
 const MOBILE_NAV_DRAWER_ID = 'hof-header-nav-drawer';
+
+const MotionLink = motion(Link);
 
 const headerNavVariants = {
   hidden: {},
@@ -70,21 +73,22 @@ export function Header() {
         }}
         transition={{ delay: NAV_ENTRANCE_DELAY }}
       >
-        <motion.a
-          href="#"
+        <MotionLink
+          to="/"
           className="hof-header__logo"
           aria-label="HOF Home"
           variants={navEntranceItemVariants}
         >
           <img
             src={HOF_LOGO_SVG_URL}
-            alt=""
+            alt="HOF — House of Fiesta logo"
             className="hof-header__logo-img"
             width={120}
             height={79}
             decoding="async"
+            fetchPriority="high"
           />
-        </motion.a>
+        </MotionLink>
         <motion.nav
           className="hof-header__nav hof-header__nav--desktop"
           aria-label="Main"
