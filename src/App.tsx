@@ -1,27 +1,24 @@
-import { Header } from './components/Header';
-import { HeroSection } from './sections/HeroSection';
-import { ExperienceSection } from './sections/ExperienceSection';
-import { PlaylistSection } from './sections/PlaylistSection';
-import { LocationSection } from './sections/LocationSection';
-import { Footer } from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import RedesignPage from './pages/RedesignPage';
 
 /**
- * HOF homepage — modular sections.
- * Each section lives in src/sections/ for independent edits.
+ * App raíz: enrutamiento.
+ * / = homepage (dark). /redesign = homepage en light mode.
  */
+function routerBasename() {
+  const base = import.meta.env.BASE_URL;
+  if (base === '/' || base === './') return undefined;
+  return base.endsWith('/') ? base.slice(0, -1) : base;
+}
+
 export default function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <div className="hof-hero-experience-wrap">
-          <HeroSection />
-          <ExperienceSection />
-        </div>
-        <PlaylistSection />
-        <LocationSection />
-      </main>
-      <Footer />
-    </>
+    <BrowserRouter basename={routerBasename()}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/redesign" element={<RedesignPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion';
 import { SectionWrapper } from '../components/SectionWrapper';
-import { HOF_EASE, sectionEntranceItemVariants, sectionEntranceItemFromBelowVariants } from '../lib/hof-motion';
+import {
+  HOF_EASE,
+  sectionEntranceItemVariants,
+  sectionEntranceItemFromBelowVariants,
+  sectionEntranceNestedContainerVariants,
+} from '../lib/hof-motion';
 
 /**
  * Location section module — Dirección, mapa embebido y enlace a Maps.
@@ -29,42 +34,45 @@ export function LocationSection() {
         Find us. Rush the night.
       </motion.p>
 
-      <motion.div
-        className="hof-location__card"
-        variants={sectionEntranceItemFromBelowVariants}
-        whileHover={{ scale: 1.01 }}
-        transition={{ duration: 0.25, ease: HOF_EASE }}
-      >
-        <div className="hof-location__address">
-          <strong className="hof-location__name">{ADDRESS.name}</strong>
-          <p className="hof-location__line">{ADDRESS.line1}</p>
-          <p className="hof-location__line">{ADDRESS.line2}</p>
-        </div>
-        <a
-          href={MAP_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hof-location__link"
+      {/* motion + variantes anidadas: mismo stagger tarjeta → mapa; flex evita solapamiento */}
+      <motion.div className="hof-location__body" variants={sectionEntranceNestedContainerVariants}>
+        <motion.div
+          className="hof-location__card"
+          variants={sectionEntranceItemFromBelowVariants}
+          whileHover={{ scale: 1.01 }}
+          transition={{ duration: 0.25, ease: HOF_EASE }}
         >
-          Open in Maps
-        </a>
-      </motion.div>
+          <div className="hof-location__address">
+            <strong className="hof-location__name">{ADDRESS.name}</strong>
+            <p className="hof-location__line">{ADDRESS.line1}</p>
+            <p className="hof-location__line">{ADDRESS.line2}</p>
+          </div>
+          <a
+            href={MAP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hof-location__link"
+          >
+            Open in Maps
+          </a>
+        </motion.div>
 
-      <motion.div
-        className="hof-location__map-embed"
-        variants={sectionEntranceItemFromBelowVariants}
-        aria-label="Mapa: House of Fiesta, Cancún"
-      >
-        <iframe
-          src={MAP_EMBED_SRC}
-          width="100%"
-          height="450"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="HOF — Ubicación en Cancún"
-        />
+        <motion.div
+          className="hof-location__map-embed"
+          variants={sectionEntranceItemFromBelowVariants}
+          aria-label="Mapa: House of Fiesta, Cancún"
+        >
+          <iframe
+            src={MAP_EMBED_SRC}
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="HOF — Ubicación en Cancún"
+          />
+        </motion.div>
       </motion.div>
     </SectionWrapper>
   );

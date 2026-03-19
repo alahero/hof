@@ -6,6 +6,7 @@ import {
   sectionEntranceItemFromBelowVariants,
   sectionEntranceNestedContainerVariants,
 } from '../lib/hof-motion';
+import { publicUrl } from '../lib/publicUrl';
 
 /**
  * Experience section module — tres pilares de la experiencia HOF.
@@ -31,7 +32,7 @@ export function ExperienceSection() {
     <SectionWrapper id="experience" className="hof-experience" innerClassName="hof-experience__inner">
       <div className="hof-experience__content">
         <img
-          src="/images/hof-red-cup.webp"
+          src={publicUrl('images/hof-red-cup.webp')}
           alt=""
           className="hof-deco hof-deco--cup"
           aria-hidden="true"
@@ -67,7 +68,7 @@ export function ExperienceSection() {
           ))}
         </motion.div>
         <img
-          src="/images/hof-football.webp"
+          src={publicUrl('images/hof-football.webp')}
           alt=""
           className="hof-deco hof-deco--football"
           aria-hidden="true"

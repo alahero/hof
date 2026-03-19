@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { CTAButton } from '../components/CTAButton';
 import { VerticalCutReveal } from '../components/ui/vertical-cut-reveal';
+import { publicUrl } from '../lib/publicUrl';
 
 /** Hero background: imagen local en public/images (editar el archivo para cambiar). */
-const HERO_IMAGE_PATH = '/images/hero-background.jpg';
+const HERO_IMAGE_PATH = publicUrl('images/HOF-Hero.png');
 
 /** Cuando termina el contenido del hero (CTA: delay 1.05 + duration 0.4 ≈ 1.45s). La imagen escala 120% → 100% a partir de este delay. */
 const HERO_BG_SCALE_DELAY = 1.5;
@@ -26,10 +27,13 @@ export function HeroSection() {
           ease: 'easeInOut',
         }}
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.75) 45%, rgba(0,0,0,0.95) 100%), url(${HERO_IMAGE_PATH})`,
+          backgroundImage: `url(${HERO_IMAGE_PATH})`,
         }}
       />
-      <div className="hof-hero__overlay" />
+      {/* Velado claro sobre la foto para unificar lectura del bloque tipográfico. */}
+      <div className="hof-hero__light-filter" aria-hidden="true" />
+      {/* Degradados suaves arriba/abajo hacia el color de página. */}
+      <div className="hof-hero__edge-fade" aria-hidden="true" />
       <motion.div
         className="hof-hero__content"
         initial={{ opacity: 0, y: 24 }}

@@ -57,17 +57,42 @@ body {
   background-repeat: no-repeat;
 }
 
-.hof-hero__overlay {
+/* Velado luminoso sobre la imagen (debajo de los degradados de borde). */
+.hof-hero__light-filter {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: radial-gradient(ellipse 80% 50% at 50% 20%, rgba(227, 6, 19, 0.08) 0%, transparent 50%);
   pointer-events: none;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Funde bordes del hero con el fondo de la página y la sección siguiente. */
+.hof-hero__edge-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    /* Arriba: banda corta; transparente ~10% desde el tope. */
+    linear-gradient(
+      180deg,
+      var(--hof-bg) 0%,
+      color-mix(in srgb, var(--hof-bg) 50%, transparent) 5%,
+      transparent 10%
+    ),
+    /* Abajo: transición larga; transparente ~60% desde la base. */
+    linear-gradient(
+      0deg,
+      var(--hof-bg) 0%,
+      color-mix(in srgb, var(--hof-bg) 55%, transparent) 18%,
+      color-mix(in srgb, var(--hof-bg) 22%, transparent) 36%,
+      transparent 60%
+    );
 }
 
 .hof-hero__content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .hof-hero__label {
@@ -76,9 +101,10 @@ body {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 13.3px;
-  color: var(--hof-secondary);
+  color: var(--hof-primary);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85), 0 0 12px rgba(255, 255, 255, 0.4);
 }
 
 .hof-hero__title {
@@ -87,20 +113,36 @@ body {
   font-weight: 700;
   line-height: 118px;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: #121212;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  text-shadow: none;
 }
 
 .hof-hero__title .hof-vertical-reveal {
   justify-content: center;
 }
 
+/* Sombra clara solo fuera del acento "Be HOF." (el h1 la heredaba visualmente a todos los glyphs). */
+.hof-hero__title .hof-vertical-reveal__char:not(.hof-hero__title-accent) .hof-vertical-reveal__motion {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.95), 0 2px 24px rgba(255, 255, 255, 0.45);
+}
+
+/* Punto final de cada línea (p. ej. "night." / "rules.") sin halo blanco. */
+.hof-hero__title .hof-vertical-reveal__word:last-child .hof-vertical-reveal__char:last-child .hof-vertical-reveal__motion {
+  text-shadow: none;
+}
+
 .hof-hero__title-accent {
   color: var(--hof-primary);
+  text-shadow: none;
+}
+
+.hof-hero__title .hof-hero__title-accent .hof-vertical-reveal__motion {
+  text-shadow: none;
 }
 
 /* Vertical cut reveal (hero title) — same font/size as .hof-hero__title */
@@ -135,7 +177,8 @@ body {
 .hof-hero__subtitle {
   font-family: var(--font-body);
   font-size: clamp(0.95rem, 2vw, 1.1rem);
-  color: var(--hof-surface);
+  font-weight: 600;
+  color: rgba(28, 28, 28, 0.92);
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -259,6 +302,10 @@ body {
   z-index: 2;
 }
 
+.hof-experience__subtitle {
+  color: rgba(227, 6, 19, 1);
+}
+
 .hof-experience__title {
   font-size: 65px;
   letter-spacing: -2.5px;
@@ -328,7 +375,7 @@ body {
 }
 
 .hof-playlist__inner {
-  max-width: 40rem;
+  max-width: 868px;
   margin: 0 auto;
   text-align: center;
 }
@@ -340,13 +387,204 @@ body {
 
 .hof-playlist__embed {
   margin-top: 2rem;
-  width: 100%;
+  width: 868px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hof-playlist__embed iframe {
   display: block;
   width: 100%;
   max-width: 100%;
+}
+
+/* ---------- Food section (module) ---------- */
+.hof-food {
+  background: #fff;
+  position: relative;
+}
+
+/* 300vh de espacio de scroll para el scrubbing de la animación. */
+.hof-food__scroll-container {
+  height: 300vh;
+  position: relative;
+}
+
+/* Canvas + titular fijados en viewport durante los 300vh de scroll. */
+.hof-food__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  justify-items: stretch;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+/* Columna central: burst debajo de las fotos (z-index) para que el canvas no recorte el abanico. */
+.hof-food__stage {
+  grid-column: 2;
+  position: relative;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+/* Pilas encima del canvas; el titular/CTA llevan z-index mayor para seguir legibles. */
+.hof-food__photo-stack {
+  position: relative;
+  width: clamp(136px, 15.5vw, 224px);
+  height: min(52vh, 470px);
+  z-index: 2;
+  pointer-events: none;
+  align-self: center;
+}
+
+.hof-food__photo-stack--left {
+  grid-column: 1;
+  justify-self: end;
+  margin-right: clamp(0.25rem, 1.5vw, 1.25rem);
+}
+
+.hof-food__photo-stack--right {
+  grid-column: 3;
+  justify-self: start;
+  margin-left: clamp(0.25rem, 1.5vw, 1.25rem);
+}
+
+.hof-food__photo-card {
+  position: absolute;
+  width: clamp(128px, 14.5vw, 212px);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  transform-origin: center center;
+  user-select: none;
+}
+
+.hof-food__photo-stack--left .hof-food__photo-card--left-0 {
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.hof-food__photo-stack--left .hof-food__photo-card--left-1 {
+  top: 22%;
+  left: 12%;
+  z-index: 2;
+}
+
+.hof-food__photo-stack--left .hof-food__photo-card--left-2 {
+  top: 44%;
+  left: -4%;
+  z-index: 3;
+}
+
+.hof-food__photo-stack--right .hof-food__photo-card--right-0 {
+  top: 4%;
+  right: 0;
+  left: auto;
+  z-index: 1;
+}
+
+.hof-food__photo-stack--right .hof-food__photo-card--right-1 {
+  top: 26%;
+  right: 10%;
+  left: auto;
+  z-index: 2;
+}
+
+.hof-food__photo-stack--right .hof-food__photo-card--right-2 {
+  top: 48%;
+  right: -6%;
+  left: auto;
+  z-index: 3;
+}
+
+/* Móvil: sin columnas laterales (acordado con diseño). */
+@media (max-width: 899px) {
+  .hof-food__sticky {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hof-food__photo-stack {
+    display: none;
+  }
+
+  .hof-food__stage {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Canvas más pequeño para mejor composición; centrado en el viewport. */
+.hof-food__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: min(72vw, 960px);
+  max-height: 72vh;
+}
+
+/* Titular superpuesto arriba del viewport sticky; aparece al final de la animación. */
+.hof-food__headline {
+  position: absolute;
+  top: 130px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  text-align: center;
+  color: var(--hof-neutral);
+  font-size: clamp(2rem, 5vw, 65px);
+  pointer-events: none;
+  will-change: opacity, transform;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* CTA posicionado en el viewport sticky (alineado con ajuste en preview). */
+.hof-food__menu-cta {
+  position: absolute;
+  top: 739px;
+  height: 47px;
+  z-index: 4;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.75rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--hof-primary);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  will-change: opacity, transform;
+  box-shadow: 0 4px 18px rgba(227, 6, 19, 0.35);
+}
+
+.hof-food__menu-cta:focus-visible {
+  outline: 2px solid var(--hof-neutral);
+  outline-offset: 3px;
 }
 
 /* ---------- Location section (module) ---------- */
@@ -365,12 +603,24 @@ body {
   font-size: 65px;
 }
 
+/* Columna con gap fijo: la tarjeta y el mapa no comparten colapso de márgenes ni se enciman con transforms */
+.hof-location__body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 2rem;
+}
+
 .hof-location__card {
+  align-self: center;
+  width: 472px;
+  max-width: 100%;
+  margin: 0;
   background: var(--hof-surface-dark);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
   padding: 1.5rem 2rem;
-  margin-bottom: 1.5rem;
 }
 
 .hof-location__address {
@@ -409,10 +659,9 @@ body {
 }
 
 .hof-location__map-embed {
-  width: 80vw;
-  max-width: 80vw;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  max-width: 100%;
+  flex-shrink: 0;
   height: 450px;
   border-radius: 8px;
   overflow: hidden;
@@ -488,4 +737,127 @@ body {
 
 .hof-header__link:hover {
   color: var(--hof-primary);
+}
+
+/* ---------- Light theme (redesign page: /redesign) ---------- */
+.hof-theme-light {
+  /* Variables para light mode (Design System: Surface #E9E9E9, texto oscuro) */
+  --hof-bg: #f2f2f2;
+  --hof-surface-dark: #ffffff;
+  --hof-surface-dark-2: #e0e0e0;
+  --hof-surface: #555555;
+  --hof-neutral: #1a1a1a;
+
+  min-height: 100vh;
+  background: var(--hof-bg);
+}
+
+.hof-theme-light .hof-hero {
+  background-color: var(--hof-bg);
+}
+
+/* Hero con texto oscuro: el velado en light es un poco más suave para no apagar la foto. */
+.hof-theme-light .hof-hero__light-filter {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.hof-theme-light .hof-section-title {
+  color: var(--hof-neutral);
+}
+
+.hof-theme-light .hof-experience {
+  background: var(--hof-bg);
+}
+
+.hof-theme-light .hof-card {
+  background: #e0e0e0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.hof-theme-light .hof-card__title {
+  color: var(--hof-neutral);
+}
+
+.hof-theme-light .hof-card__text {
+  color: rgba(148, 148, 148, 1);
+}
+
+.hof-theme-light .hof-playlist {
+  background: var(--hof-surface-dark-2);
+}
+
+.hof-theme-light .hof-playlist .hof-section-title {
+  color: var(--hof-primary);
+}
+
+.hof-theme-light .hof-playlist .hof-section-subtitle {
+  color: var(--hof-surface);
+}
+
+.hof-theme-light .hof-food {
+  background: #fff;
+}
+
+.hof-theme-light .hof-location {
+  background: var(--hof-bg);
+}
+
+.hof-theme-light .hof-location .hof-section-title {
+  color: var(--hof-primary);
+}
+
+/* Subtítulo de ubicación en tema claro: contraste sobre fondo claro */
+.hof-theme-light .hof-location .hof-section-subtitle {
+  color: rgba(0, 0, 0, 1);
+}
+
+/* Tarjeta más oscura que el fondo de sección para delimitar bloque y mejorar lectura */
+.hof-theme-light .hof-location__card {
+  background: var(--hof-surface-dark-2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.hof-theme-light .hof-location__name {
+  color: var(--hof-neutral);
+}
+
+.hof-theme-light .hof-location__line {
+  color: var(--hof-surface);
+}
+
+.hof-theme-light .hof-location__map-embed {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hof-theme-light .hof-header__bg {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.hof-theme-light .hof-header__logo:hover {
+  color: var(--hof-neutral);
+}
+
+.hof-theme-light .hof-header__link {
+  color: var(--hof-surface);
+}
+
+.hof-theme-light .hof-header__link:hover {
+  color: var(--hof-primary);
+}
+
+.hof-theme-light .hof-footer {
+  background: var(--hof-surface-dark-2) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.hof-theme-light .hof-footer p {
+  color: var(--hof-surface) !important;
+}
+
+.hof-theme-light .hof-footer p:last-child {
+  color: var(--hof-neutral) !important;
 }
