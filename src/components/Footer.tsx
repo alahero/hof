@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HOF_LOGO_SVG_URL } from '../lib/hof-assets';
+import { useHomeLogoClick } from '../lib/hof-home-logo-click';
 import { HOF_NAV_LINKS, MANDALA_TICKETS_FOOTER_LINKS } from '../lib/hof-nav-links';
 
 export function Footer() {
+  const onHomeLogoClick = useHomeLogoClick();
+
   return (
     <motion.footer
       className="hof-footer"
@@ -14,7 +17,7 @@ export function Footer() {
     >
       <div className="hof-footer__inner">
         <div className="hof-footer__col hof-footer__brand">
-          <Link to="/" className="hof-footer__logo" aria-label="HOF Home">
+          <Link to="/" className="hof-footer__logo" aria-label="HOF Home" onClick={onHomeLogoClick}>
             <img
               src={HOF_LOGO_SVG_URL}
               alt="HOF — House of Fiesta logo"

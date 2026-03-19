@@ -8,6 +8,7 @@ import {
   navEntranceItemVariants,
 } from '../lib/hof-motion';
 import { HOF_LOGO_SVG_URL } from '../lib/hof-assets';
+import { useHomeLogoClick } from '../lib/hof-home-logo-click';
 import { HOF_MANDALA_TICKETS_URL, HOF_NAV_LINKS } from '../lib/hof-nav-links';
 
 const MOBILE_NAV_DRAWER_ID = 'hof-header-nav-drawer';
@@ -28,6 +29,7 @@ const headerNavVariants = {
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const onHomeLogoClick = useHomeLogoClick();
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -78,6 +80,7 @@ export function Header() {
           className="hof-header__logo"
           aria-label="HOF Home"
           variants={navEntranceItemVariants}
+          onClick={onHomeLogoClick}
         >
           <img
             src={HOF_LOGO_SVG_URL}
