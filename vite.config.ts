@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -7,7 +8,8 @@ export default defineConfig(({ mode }) => {
   const siteOrigin = (env.VITE_SITE_URL ?? '').replace(/\/$/, '');
 
   return {
-    // Rutas relativas: el CSS/JS carga bien al abrir dist local, en subcarpetas y en GitHub Pages sin dominio raíz.
+    // Rutas relativas: assets con rutas relativas. Para GitHub Pages en subruta (user.github.io/repo/),
+    // usa base: '/repo/' y redeploy para que /hero-option-2 resuelva bien con el servidor + React Router.
     base: './',
     plugins: [
       react(),
@@ -28,6 +30,21 @@ export default defineConfig(({ mode }) => {
             .replace('__CANONICAL_TAG__', canonicalTag)
             .replace('__OG_URL_META__', ogUrlMeta)
             .replaceAll('__OG_IMAGE__', ogImage);
+        },
+      },
+      /**
+       * GitHub Pages: ante rutas inexistentes sirve 404.html; duplicar index.html permite que
+       * /hero-option-2 y similares carguen la SPA (React Router).
+       */
+      {
+        name: 'hof-spa-404-fallback',
+        closeBundle() {
+          const outDir = path.resolve(__dirname, 'dist');
+          const indexHtml = path.join(outDir, 'index.html');
+          const notFoundHtml = path.join(outDir, '404.html');
+          if (fs.existsSync(indexHtml)) {
+            fs.copyFileSync(indexHtml, notFoundHtml);
+          }
         },
       },
     ],
