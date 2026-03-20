@@ -1,17 +1,22 @@
 import { useLayoutEffect } from 'react';
 import { Header } from '../components/Header';
-import { HeroSection } from '../sections/HeroSection';
+import { HeroSection, type HeroOption } from '../sections/HeroSection';
 import { ExperienceSection } from '../sections/ExperienceSection';
 import { FoodSection } from '../sections/FoodSection';
 import { PlaylistSection } from '../sections/PlaylistSection';
 import { LocationSection } from '../sections/LocationSection';
 import { Footer } from '../components/Footer';
 
+export type HomePageProps = {
+  heroOption?: HeroOption;
+};
+
 /**
  * Página principal HOF — mismo layout que el rediseño (tema claro).
- * Ruta única: / (tema claro).
+ * /hero-option-2: imagen alterna, sin edge fade.
+ * /hero-option-3 y /hero-option-4: video WebM de fondo, sin CTA ni tipografía visible (ver HeroSection).
  */
-export default function HomePage() {
+export default function HomePage({ heroOption = 1 }: HomePageProps) {
   // Al entrar desde otra ruta (p. ej. 404), el documento puede seguir scrolleado abajo.
   useLayoutEffect(() => {
     if (window.location.hash) return;
@@ -23,7 +28,7 @@ export default function HomePage() {
       <Header />
       <main>
         <div className="hof-hero-experience-wrap">
-          <HeroSection />
+          <HeroSection heroOption={heroOption} />
           <ExperienceSection />
         </div>
         <FoodSection />

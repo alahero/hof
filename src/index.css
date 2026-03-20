@@ -71,6 +71,34 @@ button:focus-visible {
   background-repeat: no-repeat;
 }
 
+/* Fondo en video (Hero options 3 y 4): cubre el viewport como la imagen */
+.hof-hero__bg--video {
+  overflow: hidden;
+}
+
+.hof-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+/* Título solo para lectores de pantalla / SEO */
+.hof-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Velado luminoso sobre la imagen (debajo de los degradados de borde). */
 .hof-hero__light-filter {
   position: absolute;
@@ -102,6 +130,17 @@ button:focus-visible {
       color-mix(in srgb, var(--hof-bg) 22%, transparent) 36%,
       transparent 60%
     );
+}
+
+/* Options 3 y 4: transición solo hacia la sección inferior (sin fundido en el tope). */
+.hof-hero__edge-fade--bottom-only {
+  background: linear-gradient(
+    0deg,
+    var(--hof-bg) 0%,
+    color-mix(in srgb, var(--hof-bg) 55%, transparent) 18%,
+    color-mix(in srgb, var(--hof-bg) 22%, transparent) 36%,
+    transparent 60%
+  );
 }
 
 .hof-hero__content {

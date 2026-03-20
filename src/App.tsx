@@ -14,6 +14,9 @@ export default function App() {
     <BrowserRouter basename={routerBasename()}>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/hero-option-2" element={<HomePage heroOption={2} />} />
+        <Route path="/hero-option-3" element={<HomePage heroOption={3} />} />
+        <Route path="/hero-option-4" element={<HomePage heroOption={4} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
