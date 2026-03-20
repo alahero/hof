@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "images:convert": "node scripts/convert-hero-assets.mjs"
+    "images:convert": "node scripts/convert-hero-assets.mjs",
+    "images:scroll-webp": "node scripts/convert-scroll-animation-webp.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.11.17",

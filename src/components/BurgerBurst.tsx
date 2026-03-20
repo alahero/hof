@@ -9,7 +9,8 @@ import { HOF_MENU_URL } from '../lib/hof-nav-links';
 import { publicUrl } from '../lib/publicUrl';
 
 const FRAME_COUNT = 148;
-const FRAME_BASE = publicUrl('images/Scroll-Animation/ezgif-frame-');
+/** Secuencia ligera (WebP); los PNG originales quedan en Scroll-Animation. */
+const FRAME_BASE = publicUrl('images/Scroll-Animation-webp/ezgif-frame-');
 
 /**
  * Copias en /public/images/hof-food-gallery/ (nombres ASCII) — las rutas con espacios/comas del
@@ -35,7 +36,7 @@ const PHOTO_ROTATE_RIGHT = [8, 13, 5] as const;
 
 /** Construye la ruta de un frame por índice (1-based). */
 function frameSrc(index: number): string {
-  return `${FRAME_BASE}${String(index).padStart(3, '0')}.png`;
+  return `${FRAME_BASE}${String(index).padStart(3, '0')}.webp`;
 }
 
 /**

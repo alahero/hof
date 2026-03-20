@@ -539,9 +539,12 @@ button:focus-visible {
   .hof-food__stage {
     width: 100%;
     flex: 1;
+    min-height: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Recorta el canvas cuando sobresale del ancho (escala grande en móvil). */
+    overflow: hidden;
   }
 }
 
@@ -570,10 +573,17 @@ button:focus-visible {
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
-/* Mismo breakpoint que layout food apilado: canvas más ancho y titular más legible. */
+/* Mismo breakpoint que layout food apilado: canvas más grande; sobrante lateral se recorta. */
 @media (max-width: 899px) {
   .hof-food__canvas {
-    max-width: min(440px, 98vw);
+    /* 16:9 por altura; un poco más ancho que el viewport; stage recorta lados. */
+    width: auto;
+    height: min(56vh, 100dvh - 11.5rem);
+    max-width: none;
+    max-height: none;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    object-fit: contain;
   }
 
   .hof-food__headline {
