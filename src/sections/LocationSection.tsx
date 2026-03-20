@@ -20,9 +20,54 @@ const ADDRESS = {
 /** Enlace a Google Maps para HOF — House of Fiesta (Cancún). */
 const MAP_LINK = 'https://maps.app.goo.gl/jKyz599J67jWD8bx6';
 
-/** URL del iframe de Google Maps (Compartir > Insertar mapa) para HOF — House of Fiesta. */
-const MAP_EMBED_SRC =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.476655446517!2d-86.75139921154897!3d21.1334210303718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4c29c8e022f8cf%3A0x317e02417e298b81!2sHOF%20-%20House%20of%20Fiesta!5e0!3m2!1sen!2smx!4v1773445292516!5m2!1sen!2smx';
+/** Ruta de Google Maps: cómo llegar (destino por nombre). */
+const DIRECTIONS_LINK = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+  'House of Fiesta, Cancún, Quintana Roo, México',
+)}`;
+
+/** Icono: abrir en ventana nueva (enlace externo). */
+function IconOpenExternal({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  );
+}
+
+/** Icono: indicaciones / cómo llegar. */
+function IconDirections({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <polygon points="3 11 22 2 13 21 11 13 3 11" />
+    </svg>
+  );
+}
 
 export function LocationSection() {
   return (
@@ -34,44 +79,58 @@ export function LocationSection() {
         Find us. Rush the night.
       </motion.p>
 
-      {/* motion + variantes anidadas: mismo stagger tarjeta → mapa; flex evita solapamiento */}
+      {/* Contenedor del mapa: tarjeta superpuesta arriba a la derecha + stagger mapa → tarjeta */}
       <motion.div className="hof-location__body" variants={sectionEntranceNestedContainerVariants}>
-        <motion.div
-          className="hof-location__card"
-          variants={sectionEntranceItemFromBelowVariants}
-          whileHover={{ scale: 1.01 }}
-          transition={{ duration: 0.25, ease: HOF_EASE }}
-        >
-          <div className="hof-location__address">
-            <strong className="hof-location__name">{ADDRESS.name}</strong>
-            <p className="hof-location__line">{ADDRESS.line1}</p>
-            <p className="hof-location__line">{ADDRESS.line2}</p>
-          </div>
-          <a
-            href={MAP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hof-location__link"
+        <motion.div className="hof-location__map-wrap" variants={sectionEntranceNestedContainerVariants}>
+          <motion.div
+            className="hof-location__map-embed"
+            variants={sectionEntranceItemFromBelowVariants}
+            aria-label="Mapa: House of Fiesta, Cancún"
           >
-            Open in Maps
-          </a>
-        </motion.div>
+            <iframe
+              src="https://snazzymaps.com/embed/780686"
+              width="100%"
+              height="487px"
+              style={{ border: 'none' }}
+            />
+          </motion.div>
 
-        <motion.div
-          className="hof-location__map-embed"
-          variants={sectionEntranceItemFromBelowVariants}
-          aria-label="Mapa: House of Fiesta, Cancún"
-        >
-          <iframe
-            src={MAP_EMBED_SRC}
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="HOF — Ubicación en Cancún"
-          />
+          <motion.div
+            className="hof-location__card"
+            variants={sectionEntranceItemFromBelowVariants}
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.25, ease: HOF_EASE }}
+          >
+            <div className="hof-location__card-inner">
+              <div className="hof-location__address">
+                <strong className="hof-location__name">{ADDRESS.name}</strong>
+                <p className="hof-location__line">{ADDRESS.line1}</p>
+                <p className="hof-location__line">{ADDRESS.line2}</p>
+              </div>
+              <div className="hof-location__card-actions" role="group" aria-label="Mapas e indicaciones">
+                <a
+                  href={MAP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hof-location__icon-btn"
+                  aria-label="Open in Google Maps in a new tab"
+                  title="Open in Maps"
+                >
+                  <IconOpenExternal />
+                </a>
+                <a
+                  href={DIRECTIONS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hof-location__icon-btn"
+                  aria-label="How to get there — directions in a new tab"
+                  title="How to get there"
+                >
+                  <IconDirections />
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </SectionWrapper>

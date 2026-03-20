@@ -96,6 +96,7 @@ Design system derived from *HOF_Brandbook_2025*. Mandatory use for the dynamic w
 ## 8. File Reference
 
 - Full brandbook: `HOF_Brandbook_2025.pdf` (project root).
+- Google Maps cloud styling (light mode, JSON para importar en Map Styles): `hof-google-maps-cloud-light.json`.
 
 ---
 
