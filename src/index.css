@@ -132,17 +132,6 @@ button:focus-visible {
     );
 }
 
-/* Options 3 y 4: transición solo hacia la sección inferior (sin fundido en el tope). */
-.hof-hero__edge-fade--bottom-only {
-  background: linear-gradient(
-    0deg,
-    var(--hof-bg) 0%,
-    color-mix(in srgb, var(--hof-bg) 55%, transparent) 18%,
-    color-mix(in srgb, var(--hof-bg) 22%, transparent) 36%,
-    transparent 60%
-  );
-}
-
 .hof-hero__content {
   position: relative;
   z-index: 3;

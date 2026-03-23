@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     // Rutas relativas: assets con rutas relativas. Para GitHub Pages en subruta (user.github.io/repo/),
-    // usa base: '/repo/' y redeploy para que /hero-option-2 resuelva bien con el servidor + React Router.
+    // usa base: '/repo/' y redeploy para que las rutas de la SPA resuelvan bien con el servidor + React Router.
     base: './',
     plugins: [
       react(),
@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
       },
       /**
        * GitHub Pages: ante rutas inexistentes sirve 404.html; duplicar index.html permite que
-       * /hero-option-2 y similares carguen la SPA (React Router).
+       * rutas del cliente (React Router) carguen la SPA.
        */
       {
         name: 'hof-spa-404-fallback',
