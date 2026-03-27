@@ -7,7 +7,7 @@ import { sectionEntranceItemVariants } from '../lib/hof-motion';
  * Título/subtítulo en tono de voz HOF; embed de Spotify como contenido principal.
  */
 const SPOTIFY_EMBED_SRC =
-  'https://open.spotify.com/embed/playlist/5CtW0UBKTZ0TTN4bF6hTUL?utm_source=generator&theme=0';
+  'https://open.spotify.com/embed/playlist/6fd9WAm5r6WIHJuZMZC5R8?utm_source=generator';
 
 export function PlaylistSection() {
   return (
@@ -24,6 +24,7 @@ export function PlaylistSection() {
         variants={sectionEntranceItemVariants}
       >
         <iframe
+          data-testid="embed-iframe"
           title="HOF Anthems — Spotify Playlist"
           src={SPOTIFY_EMBED_SRC}
           width="100%"
